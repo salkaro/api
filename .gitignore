@@ -1,0 +1,4 @@
+config/firebase-credentials.json
+internal
+*.env
+*.kiro
