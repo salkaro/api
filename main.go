@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"influxdb_go_client/api"
 	"log"
 	"net/http"
@@ -17,7 +16,7 @@ func main() {
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprint(w, `{"name": "Salkaro API", "version": "1.0.1"}`)
+		w.Write([]byte(`{"name": "Salkaro API", "version": "1.0.1"}`))
 	})
 
 	// Health check endpoint
