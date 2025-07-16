@@ -9,12 +9,5 @@
             "src": "/v1/upload",
             "dest": "/api/upload"
         }
-    ],
-    "env": {
-        "PROJECT_ID": "@project-id",
-        "INFLUXDB_URL": "@influxdb-url",
-        "INFLUXDB_TOKEN": "@influxdb-token",
-        "INFLUXDB_ORG": "@influxdb-org",
-        "FIREBASE_CREDENTIALS": "@firebase-credentials"
-    }
+    ]
 }
