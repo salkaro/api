@@ -12,9 +12,5 @@
             "src": "/v1/upload",
             "dest": "/api/upload"
         }
-    ],
-    "build": {
-        "installCommand": "go mod download",
-        "buildCommand": ""
-    }
+    ]
 }
