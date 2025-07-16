@@ -137,8 +137,8 @@ func handleUpload(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Step 4: Validate API key and permissions
-	if !validateAPIKey(orgID, apiKey) {
+	// Step 4: Validate API key, permissions and sensor id
+	if (!validateAPIKey(orgID, apiKey) || !validateSensorID(orgID, sensorID)){
 		http.Error(w, "Unauthorized", http.StatusUnauthorized)
 		return
 	}
@@ -283,6 +283,26 @@ func validateAPIKey(orgID, apiKey string) bool {
 		Doc(orgID).
 		Collection("apiKeys").
 		Doc(apiKey)
+
+	// Use a short timeout to avoid hanging
+	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+	defer cancel()
+
+	_, err := docRef.Get(ctx)
+	if err != nil {
+		// Not found or some other error
+		return false
+	}
+	return true
+}
+
+func validateSensorID(orgID, sensorId string) bool {
+	// Step 1: Check to see if the api key exists
+	docRef := firestoreClient.
+		Collection("devices").
+		Doc(orgID).
+		Collection("sensors").
+		Doc(sensorId)
 
 	// Use a short timeout to avoid hanging
 	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
