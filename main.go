@@ -14,20 +14,9 @@ func main() {
 		log.Printf("Warning: Error loading .env file: %v", err)
 	}
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		w.Write([]byte(`{"name": "Salkaro API", "version": "1.0.1"}`))
-	})
-
-	// Health check endpoint
-	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusOK)
-		w.Write([]byte(`{"status":"healthy"}`))
-	})
-
-	// Register the upload endpoint
-	http.HandleFunc("/v1/upload", api.Handler)
+	// Register endpoints
+	http.HandleFunc("/", api.RootHandler)
+	http.HandleFunc("/v1/upload", api.UploadHandler)
 
 	log.Println("📡 DeviceData API listening on :8080")
 	log.Println("✅ /v1/upload endpoint is now available for local development")

@@ -103,7 +103,7 @@ func initClients() error {
 }
 
 // Handler is the main Vercel serverless function handler
-func Handler(w http.ResponseWriter, r *http.Request) {
+func UploadHandler(w http.ResponseWriter, r *http.Request) {
 	// Initialize clients on first request (cold start optimization)
 	if err := initClients(); err != nil {
 		log.Printf("Failed to initialize clients: %v", err)

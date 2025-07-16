@@ -1,6 +1,11 @@
 {
     "version": 2,
     "functions": {
+        "api/root.go": {
+            "runtime": "@vercel/go@3.2.1",
+            "memory": 128,
+            "maxDuration": 5
+        },
         "api/upload.go": {
             "runtime": "@vercel/go@3.2.1",
             "memory": 256,
@@ -8,6 +13,10 @@
         }
     },
     "routes": [
+        {
+            "src": "/",
+            "dest": "/api/root"
+        },
         {
             "src": "/v1/upload",
             "dest": "/api/upload"
