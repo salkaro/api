@@ -1,7 +1,10 @@
 {
+    "version": 2,
     "functions": {
         "api/upload.go": {
-            "runtime": "go1.x"
+            "runtime": "vercel-go@0.5.5",
+            "memory": 256,
+            "maxDuration": 10
         }
     },
     "routes": [
@@ -9,5 +12,9 @@
             "src": "/v1/upload",
             "dest": "/api/upload"
         }
-    ]
+    ],
+    "build": {
+        "installCommand": "go mod download",
+        "buildCommand": ""
+    }
 }
