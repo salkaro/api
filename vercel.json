@@ -2,7 +2,7 @@
     "version": 2,
     "functions": {
         "api/upload.go": {
-            "runtime": "vercel-go@0.5.5",
+            "runtime": "@vercel/go",
             "memory": 256,
             "maxDuration": 10
         }
